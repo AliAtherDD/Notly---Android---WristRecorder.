@@ -1,0 +1,24 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        google()
+        mavenCentral()
+    }
+}
+plugins {
+    id 'org.gradle.toolchains.foojay-resolver-convention' version '0.10.0'
+}
+dependencyResolutionManagement {
+    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+    repositories {
+        google()
+        mavenCentral()
+    }
+}
+rootProject.name = "NotlyWatch"
+// ':mobile' is the original Wrist Recorder phone companion (different
+// applicationId). The Notly Flutter app is now the phone side, so it is
+// excluded from the build; sources are kept for reference only.
+// include ':mobile'
+include ':wear'
+include ':common'

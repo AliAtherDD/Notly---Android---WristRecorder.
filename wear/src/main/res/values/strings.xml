@@ -1,0 +1,96 @@
+<resources>
+    <!-- app_name is defined per flavor in build.gradle.kts -->
+    <string name="recording">Recording</string>
+    <string name="recording_consultation">Recording consultation</string>
+    <string name="recording_paused">Paused</string>
+    <string name="open_notly">Open Notly</string>
+    <string name="channel_transfer">Sending to phone</string>
+    <string name="sending_to_phone">Sending recording to phone</string>
+
+    <string name="status_connected">● Connected</string>
+    <string name="status_offline">● Offline</string>
+
+    <!-- Setup -->
+    <string name="kicker_companion">Notly companion</string>
+    <string name="setup_title">Finish setup on phone</string>
+    <string name="setup_copy">Open Notly on your phone, sign in and tap Authorise Watch.</string>
+    <string name="setup_offline_copy">Your phone is not reachable. Keep it nearby with Bluetooth on.</string>
+
+    <!-- Ready -->
+    <string name="kicker_ready">Ready</string>
+    <string name="ready_title">New consultation</string>
+    <string name="ready_copy">Audio is stored securely on this watch until verified on your phone.</string>
+    <string name="start_consultation">Start consultation</string>
+    <plurals name="waiting_to_send">
+        <item quantity="one">%1$d recording waiting to send</item>
+        <item quantity="other">%1$d recordings waiting to send</item>
+    </plurals>
+
+    <!-- Consent -->
+    <string name="kicker_before_recording">Before recording</string>
+    <string name="consent_title">Patient consent</string>
+    <string name="consent_copy">Confirm the patient agrees to recording and Notly processing.</string>
+    <string name="consent_note">No audio is captured until you confirm.</string>
+    <string name="cancel">Cancel</string>
+    <string name="consent_confirmed">Consent confirmed</string>
+
+    <!-- Permission -->
+    <string name="mic_needed_title">Microphone needed</string>
+    <string name="mic_needed_copy">Notly needs microphone access to record consultations.</string>
+    <string name="open_settings">Open settings</string>
+    <string name="try_again">Try again</string>
+
+    <!-- Recording -->
+    <string name="recording_label">Recording</string>
+    <string name="paused_label">Paused</string>
+    <string name="recording_phone_connected">Phone connected</string>
+    <string name="recording_offline">Recording safely on watch</string>
+    <string name="mic_silenced">Microphone in use by another app</string>
+    <string name="pause">Pause</string>
+    <string name="resume">Resume</string>
+    <string name="finish">Finish</string>
+
+    <!-- Summary -->
+    <string name="kicker_recorded">Consultation recorded</string>
+    <string name="summary_title">Ready to send</string>
+    <string name="summary_copy">The protected recording remains on this watch until your phone confirms receipt.</string>
+    <string name="duration">Duration</string>
+    <string name="send_to_phone">Send to phone</string>
+    <string name="queue_for_phone">Queue for phone</string>
+    <string name="continue_recording">Continue recording</string>
+    <string name="delete">Delete</string>
+    <string name="not_authorised_send">Authorise this watch on your phone to send.</string>
+
+    <!-- Delete -->
+    <string name="delete_title">Delete recording?</string>
+    <string name="delete_copy">This consultation audio will be permanently removed from this watch.</string>
+    <string name="deleted">Recording deleted</string>
+
+    <!-- Transfer -->
+    <string name="kicker_queued">Safely queued</string>
+    <string name="queued_title">Waiting for phone</string>
+    <string name="queued_copy">The recording is protected on this watch and will send automatically when connected.</string>
+    <string name="done">Done</string>
+    <string name="kicker_in_progress">Transfer in progress</string>
+    <string name="sending_title">Sending securely</string>
+    <string name="sending_copy">You may leave this screen. Delivery continues in the background.</string>
+    <string name="kicker_delivered">Delivered</string>
+    <string name="delivered_title">Continue on phone</string>
+    <string name="delivered_copy">The recording is safe. Patient matching and transcription continue in Notly.</string>
+    <string name="new_consultation">New consultation</string>
+    <string name="kicker_failed">Not sent</string>
+    <string name="failed_title">Action needed</string>
+    <string name="retry">Retry</string>
+
+    <!-- Queue -->
+    <string name="queue_title">Waiting to send</string>
+    <string name="queue_empty">Nothing waiting to send.</string>
+    <string name="back">Back</string>
+
+    <!-- Errors -->
+    <string name="error_mic_permission">Microphone permission is required.</string>
+    <string name="error_recorder">The microphone stopped unexpectedly. Audio captured so far was kept.</string>
+    <string name="error_no_audio">No audio was captured.</string>
+    <string name="error_unauthorized">This watch is no longer authorised. Authorise it again from Notly on your phone.</string>
+    <string name="error_other_account">Recorded under a different Notly account. Authorise that account to send it.</string>
+</resources>

@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <!-- Consultation recording continues while the screen is off / app is in background. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MICROPHONE" />
+    <!-- Recording transfer to the phone (WorkManager foreground worker). -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_DATA_SYNC" />
+
+    <uses-feature android:name="android.hardware.type.watch" />
+    <uses-feature android:name="android.hardware.microphone" />
+
+    <!-- allowBackup=false: consultation audio and the companion credential must never leave
+         the device except through the verified phone transfer. -->
+    <application
+            android:name=".MainApplication"
+            android:allowBackup="false"
+            android:dataExtractionRules="@xml/data_extraction_rules"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:supportsRtl="true"
+            android:theme="@style/Theme.App.Starting">
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+            <meta-data
+                android:name="androidx.work.WorkManagerInitializer"
+                android:value="androidx.startup"
+                tools:node="remove" />
+        </provider>
+
+        <uses-library
+                android:name="com.google.android.wearable"
+                android:required="true" />
+
+        <meta-data
+                android:name="com.google.android.gms.version"
+                android:value="@integer/google_play_services_version" />
+
+        <!-- Records without the phone; the phone is only needed to authorise and to receive. -->
+        <meta-data
+                android:name="com.google.android.wearable.standalone"
+                android:value="true" />
+
+        <activity
+                android:name=".MainActivity"
+                android:exported="true"
+                android:launchMode="singleTop"
+                android:taskAffinity=".main">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service
+                android:name=".service.RecordingService"
+                android:enabled="true"
+                android:exported="false"
+                android:foregroundServiceType="microphone" />
+
+        <!-- WorkManager foreground worker used by TransferWorker. -->
+        <service
+                android:name="androidx.work.impl.foreground.SystemForegroundService"
+                android:foregroundServiceType="dataSync"
+                tools:node="merge" />
+
+        <!-- Data Layer: only apps with the same applicationId + signing key can reach this. -->
+        <service
+                android:name=".service.SyncService"
+                android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.REQUEST_RECEIVED" />
+                <data
+                        android:host="*"
+                        android:pathPrefix="/notly/v1/"
+                        android:scheme="wear" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="com.google.android.gms.wearable.CAPABILITY_CHANGED" />
+                <data
+                        android:host="*"
+                        android:path="/notly_phone"
+                        android:scheme="wear" />
+            </intent-filter>
+        </service>
+    </application>
+</manifest>
